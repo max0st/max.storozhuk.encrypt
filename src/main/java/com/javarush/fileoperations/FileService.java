@@ -68,7 +68,7 @@ public class FileService {
      * @param filePath                  The path of the file to be decrypted and analyzed.
      * @param filePathForStaticAnalysis The path of the file containing expected letter percentages for analysis.
      */
-    public static void decryptAnalysisBF(String filePath, String filePathForStaticAnalysis) {
+    public static int decryptAnalysisBF(String filePath, String filePathForStaticAnalysis) {
         String text = CustomFileReader.readFile(filePath);
         String textForAnalysis = CustomFileReader.readFile(filePathForStaticAnalysis);
         BruteForce.BruteForceResult result = BruteForce.bruteForceDecrypt(text, textForAnalysis);
@@ -77,6 +77,7 @@ public class FileService {
         String bruteDecryptedFilePath = appendOperationToFileName(filePath, ("BRUTEFORCE=" + key));
         CustomFileWriter.writeFile(bruteDecryptedFilePath, bruteDecryptedContent);
         System.out.println("File decrypted with bruteforce. Decrypted file saved at:  " + bruteDecryptedFilePath);
+        return key;
     }
 
     /**
@@ -84,13 +85,14 @@ public class FileService {
      *
      * @param filePath The path of the file to be decrypted.
      */
-    public static void decryptBF(String filePath) {
+    public static int decryptBF(String filePath) {
         String text = CustomFileReader.readFile(filePath);
         BruteForce.BruteForceResult result = BruteForce.bruteForceDecrypt(text);
         String bruteDecryptedContent = result.getDecryptedText();
         int key = result.getKey();
         String bruteDecryptedFilePath = appendOperationToFileName(filePath, ("BRUTEFORCE=" + key));
         CustomFileWriter.writeFile(bruteDecryptedFilePath, bruteDecryptedContent);
+        return key;
     }
 
     /**
