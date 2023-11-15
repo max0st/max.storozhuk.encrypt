@@ -6,7 +6,7 @@ public class Runner {
         if (args.length > 0) {
             CLI.runFromArgs(args);
         } else {
-            CLI.runFromCLI();
+            GUI.launchGUI();
         }
     }
 }
