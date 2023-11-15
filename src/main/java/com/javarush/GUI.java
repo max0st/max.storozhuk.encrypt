@@ -53,6 +53,7 @@ public class GUI extends Application {
 
         Label infoLabel = new Label("If the field is empty,\n the default letter frequencies will be used");
         infoLabel.setVisible(false);
+        Label infoForCommand = new Label("Choose the command to perform actions");
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose File");
@@ -136,6 +137,7 @@ public class GUI extends Application {
             executeButton.setVisible(true);
             browseFilePathButton.setVisible(true);
             browseFilePathForStatAnalysisButton.setVisible(isBruteForce);
+            infoForCommand.setVisible(false);
 
 
             if (isBruteForce) {
@@ -152,6 +154,7 @@ public class GUI extends Application {
 
         grid.add(commandLabel, 0, 0);
         grid.add(commandComboBox, 1, 0);
+        grid.add(infoForCommand,1,1);
         grid.add(filePathLabel, 0, 1);
         grid.add(filePathField, 1, 1);
         grid.add(browseFilePathButton, 2, 1);
@@ -165,7 +168,7 @@ public class GUI extends Application {
 
         GridPane.setColumnSpan(infoLabel, GridPane.REMAINING);
 
-        Scene scene = new Scene(grid, 600, 250);
+        Scene scene = new Scene(grid, 650, 250);
         primaryStage.setScene(scene);
 
         primaryStage.show();
