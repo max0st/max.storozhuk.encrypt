@@ -49,7 +49,7 @@ public class CLI {
     }
 
     private static String getFilePath() {
-        System.out.println("Enter file path:");
+        System.out.println("Enter the path to the file you want to work with :");
         return scanner.next();
     }
 
