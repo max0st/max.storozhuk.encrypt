@@ -18,3 +18,28 @@ This project focuses on implementing a simple file encryption and decryption sys
 - **Caesar Cipher:** The core encryption and decryption mechanism use the Caesar cipher with customizable key values.
 - **Brute-Force Attack:** Implemented a brute-force attack with frequency analysis to decrypt files without a known key.
 - **JavaFX GUI:** Utilized JavaFX to create an interactive and responsive graphical user interface.
+
+## Running the Application
+*OPERATION:* [ENCRYPT, DECRYPT, BRUTE_FORCE]
+- **Option 1:** Command-Line Arguments.
+     - **a) Using Edit Configurations:** 
+       - Open the project in your preferred IDE.
+       - Navigate to the "Edit Configurations" settings.
+       - JAR application: max.storozhuk.encrypt-1.0-jar-with-dependencies.jar.
+       - Program Arguments: OPERATION "foldername/textFile1.txt" key (for ENCRYPT/DECRYPT) and BRUTE_FORCE "foldername/textFile1.txt" "OPTIONAL/path/to/the/file/for/text/frequency/analysis".
+     - **b) Using Terminal:**
+       - Open a terminal and navigate to the project's target directory.
+       - Run the following command: java -jar "C:\folder\max.storozhuk.encrypt\target\max.storozhuk.encrypt-1.0-jar-with-dependencies.jar" OPERATION "folder name/textFile1.txt" 20
+- **Option 2 and 3:** Run "max.storozhuk.encrypt-1.0-jar-with-dependencies.jar" in your preferred IDE
+  - Choose Choose the operating mode:
+    - 1 for CLI (Command Line Interface)
+    - 2 for GUI (Graphical User Interface)
+    
+For CLI:
+Enter the command (ENCRYPT, DECRYPT, BRUTE_FORCE).
+Provide the file path and key or path to the file for frequency analysis (if required).
+
+For GUI:
+Launch the GUI for a more interactive file operation experience.
+
+***Note:*** **If no file path for frequency analysis is provided, the default letter probabilities in percentages taken from public sources will be used.**
