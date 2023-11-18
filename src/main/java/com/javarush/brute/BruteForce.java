@@ -75,7 +75,7 @@ public class BruteForce {
      * @return The most plausible key for decryption.
      */
     private static int findKey(String encryptedText) {
-        int alphabetLength = (AlphabetDeterminer.determineAlphabet(encryptedText).length()) - AlphabetDeterminer.ADDITIONAL_CASES.length();
+        int alphabetLength = (AlphabetDeterminer.determineAlphabet(encryptedText).length()) - AlphabetDeterminer.getAdditionalCases().length();
         int bestKey = 0;
         double bestPlausibility = Double.POSITIVE_INFINITY;
 
@@ -102,7 +102,7 @@ public class BruteForce {
      */
 
     private static int findKey(String encryptedText, String filePathForStaticAnalysis) {
-        int alphabetLength = (AlphabetDeterminer.determineAlphabet(encryptedText).length()) - AlphabetDeterminer.ADDITIONAL_CASES.length();
+        int alphabetLength = (AlphabetDeterminer.determineAlphabet(encryptedText).length()) - AlphabetDeterminer.getAdditionalCases().length();
         int bestKey = 0;
         double bestPlausibility = Double.POSITIVE_INFINITY;
 

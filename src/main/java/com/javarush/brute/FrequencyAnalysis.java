@@ -33,7 +33,7 @@ public class FrequencyAnalysis {
      */
     static double calculateProbability(String decryptedText) {
         String alphabet = AlphabetDeterminer.determineAlphabet(decryptedText);
-        int alphabetLength = alphabet.length() - AlphabetDeterminer.ADDITIONAL_CASES.length();
+        int alphabetLength = alphabet.length() - AlphabetDeterminer.getAdditionalCases().length();
         int[] decryptedFrequency = calculateFrequency(decryptedText);
         double plausibility = 0.0;
 
@@ -56,7 +56,7 @@ public class FrequencyAnalysis {
      */
     static double calculateProbability(String decryptedText, Map<Character, Double> letterPercentages) {
         String alphabet = AlphabetDeterminer.determineAlphabet(decryptedText);
-        int alphabetLength = alphabet.length() - AlphabetDeterminer.ADDITIONAL_CASES.length();
+        int alphabetLength = alphabet.length() - AlphabetDeterminer.getAdditionalCases().length();
         int[] decryptedFrequency = FrequencyAnalysis.calculateFrequency(decryptedText);
         double plausibility = 0.0;
 

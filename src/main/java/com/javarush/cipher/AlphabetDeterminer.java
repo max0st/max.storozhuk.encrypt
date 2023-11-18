@@ -32,15 +32,15 @@ public class AlphabetDeterminer {
      * A constant string containing additional characters such as punctuation marks,
      * symbols, and spaces that are included in both the English and Ukrainian alphabets.
      */
-    public static final String ADDITIONAL_CASES = ".«»,\":!? /\\'";
+    private static final String ADDITIONAL_CASES = ".«»,\":!? /\\'";
     /**
      * A constant string representing the English alphabet, including additional cases.
      */
-    public static final String ENGLISH_ALPHABET = "abcdefghijklmnopqrstuvwxyz" + ADDITIONAL_CASES;
+    private static final String ENGLISH_ALPHABET = "abcdefghijklmnopqrstuvwxyz" + ADDITIONAL_CASES;
     /**
      * A constant string representing the Ukrainian alphabet, including additional cases.
      */
-    public static final String UKRAINIAN_ALPHABET = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя" + ADDITIONAL_CASES;
+    private static final String UKRAINIAN_ALPHABET = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя" + ADDITIONAL_CASES;
 
     /**
      * Determines the alphabet based on the language detected in the input text.
@@ -65,5 +65,17 @@ public class AlphabetDeterminer {
         } else {
             throw new IllegalArgumentException("Unsupported language in the text");
         }
+    }
+
+    public static String getAdditionalCases() {
+        return ADDITIONAL_CASES;
+    }
+
+    public static String getEnglishAlphabet() {
+        return ENGLISH_ALPHABET;
+    }
+
+    public static String getUkrainianAlphabet() {
+        return UKRAINIAN_ALPHABET;
     }
 }
