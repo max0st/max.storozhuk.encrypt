@@ -23,7 +23,7 @@ import com.javarush.cipher.AlphabetDeterminer;
 
 import java.util.Map;
 
-public class FrequencyAnalysis {
+class FrequencyAnalysis {
     /**
      * Calculates the plausibility of decrypted text using frequency analysis and expected letter percentages
      * obtained from the text itself.
@@ -31,7 +31,7 @@ public class FrequencyAnalysis {
      * @param decryptedText The decrypted text for plausibility calculation.
      * @return The plausibility score based on frequency analysis.
      */
-    static double calculateProbability(String decryptedText) {
+    protected static double calculateProbability(String decryptedText) {
         String alphabet = AlphabetDeterminer.determineAlphabet(decryptedText);
         int alphabetLength = alphabet.length() - AlphabetDeterminer.getAdditionalCases().length();
         int[] decryptedFrequency = calculateFrequency(decryptedText);
@@ -54,7 +54,7 @@ public class FrequencyAnalysis {
      * @param letterPercentages The map containing expected letter percentages.
      * @return The plausibility score based on frequency analysis.
      */
-    static double calculateProbability(String decryptedText, Map<Character, Double> letterPercentages) {
+    protected static double calculateProbability(String decryptedText, Map<Character, Double> letterPercentages) {
         String alphabet = AlphabetDeterminer.determineAlphabet(decryptedText);
         int alphabetLength = alphabet.length() - AlphabetDeterminer.getAdditionalCases().length();
         int[] decryptedFrequency = FrequencyAnalysis.calculateFrequency(decryptedText);
@@ -78,7 +78,7 @@ public class FrequencyAnalysis {
      * @return An array representing the distribution of letters in the alphabet.
      */
 
-    static int[] calculateFrequency(String text) {
+    protected static int[] calculateFrequency(String text) {
         String alphabet = AlphabetDeterminer.determineAlphabet(text);
         int alphabetLength = alphabet.length();
         int[] frequency = new int[alphabetLength];
