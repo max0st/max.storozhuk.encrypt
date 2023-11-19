@@ -18,6 +18,12 @@ This project focuses on implementing a simple file encryption and decryption sys
 - **Caesar Cipher:** The core encryption and decryption mechanism use the Caesar cipher with customizable key values.
 - **Brute-Force Attack:** Implemented a brute-force attack with frequency analysis to decrypt files without a known key.
 - **JavaFX GUI:** Utilized JavaFX to create an interactive and responsive graphical user interface.
+- 
+## Important Note on Character Shifts and Case Sensitivity
+
+The encryption and decryption methods in this system operate on a character-by-character basis, utilizing an alphabet that includes additional symbols such as (,.!? and more). It's crucial to be aware that when these characters undergo shifts during encryption or decryption using the Caesar cipher, a letter might transform into a symbol, and vice versa. Consequently, this process may lead to the loss of information regarding character case (uppercase/lowercase).
+
+For example, the letter "Y" (upper case) with the key = 2 will turn into "." (dot) when encrypted. Therefore, when decrypting with the same key, the symbol "." (dot) will turn into "y" (lower case).
 
 ## Running the Application
 *OPERATION:* [ENCRYPT, DECRYPT, BRUTE_FORCE]
@@ -38,6 +44,8 @@ This project focuses on implementing a simple file encryption and decryption sys
 For CLI:
 Enter the command (ENCRYPT, DECRYPT, BRUTE_FORCE).
 Provide the file path and key or path to the file for frequency analysis (if required).
+
+
 
 For GUI:
 Launch the GUI for a more interactive file operation experience.
