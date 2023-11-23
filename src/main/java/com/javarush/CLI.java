@@ -24,15 +24,17 @@
  */
 package com.javarush;
 
-import com.javarush.fileoperations.FileService;
+import com.javarush.cipher.CipherService;
 
 import java.util.Scanner;
 
 public class CLI {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
+    private final CipherService cipherService = new CipherService();
 
-    public static String[] getUserInput() {
+
+    public String[] getUserInput() {
         System.out.println("Enter command (ENCRYPT, DECRYPT, BRUTE_FORCE):");
         String command = scanner.next().toUpperCase();
 
@@ -48,22 +50,22 @@ public class CLI {
         }
     }
 
-    private static String getFilePath() {
+    private String getFilePath() {
         System.out.println("Enter the path to the file you want to work with :");
         return scanner.next();
     }
 
-    private static String getFilePathForStaticAnalysis() {
+    private String getFilePathForStaticAnalysis() {
         System.out.println("Enter file for static analysis path:");
         return scanner.next();
     }
 
-    private static String getKey() {
+    private String getKey() {
         System.out.println("Enter key:");
         return scanner.next();
     }
 
-    public static void runFromArgs(String[] args) {
+    public void runFromArgs(String[] args) {
 
         String command = args[0].toUpperCase();
         String filePath = args[1];
@@ -72,7 +74,7 @@ public class CLI {
             case "ENCRYPT" -> {
                 if (args.length == 3) {
                     int key = Integer.parseInt(args[2]);
-                    FileService.encryptFile(filePath, key);
+                    cipherService.encryptFile(filePath, key);
                 } else {
                     System.out.println("Invalid arguments for ENCRYPT command.");
                 }
@@ -80,7 +82,7 @@ public class CLI {
             case "DECRYPT" -> {
                 if (args.length == 3) {
                     int key = Integer.parseInt(args[2]);
-                    FileService.decryptFile(filePath, key);
+                    cipherService.decryptFile(filePath, key);
                 } else {
                     System.out.println("Invalid arguments for DECRYPT command.");
                 }
@@ -88,17 +90,17 @@ public class CLI {
             case "BRUTE_FORCE" -> {
                 if (args.length == 3) {
                     String filePathForStaticAnalysis = args[2];
-                    FileService.decryptAnalysisBF(filePath, filePathForStaticAnalysis);
+                    cipherService.decryptAnalysisBF(filePath, filePathForStaticAnalysis);
                 } else if (args.length == 2) {
-                    FileService.decryptBF(filePath);
+                    cipherService.decryptBF(filePath);
                 } else System.out.println("Invalid arguments for BRUTEFORCE command.");
             }
             default -> System.out.println("Invalid command.");
         }
     }
 
-    public static void runFromCLI() {
-        String[] userInput = CLI.getUserInput();
+    public void runFromCLI() {
+        String[] userInput = getUserInput();
 
         if (userInput.length > 0) {
             runFromArgs(userInput);
