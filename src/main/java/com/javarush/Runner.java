@@ -1,5 +1,7 @@
 package com.javarush;
 
+import com.javarush.gui.GUI;
+
 import java.util.Scanner;
 
 public class Runner {
@@ -19,7 +21,7 @@ public class Runner {
             if (choice.equals("1")) {
                 CLI.runFromCLI();
             } else if (choice.equals("2")) {
-                GUI.launchGUI();
+                new GUI().launchGUI();
             } else {
                 System.out.println("Incorrect command");
             }
