@@ -27,7 +27,6 @@ import java.util.Map;
 
 public class ExpectedPercentages {
 
-    private static final String UKRAINIAN_ALPHABET = AlphabetDeterminer.getUkrainianAlphabet();
     private static final String ENGLISH_ALPHABET = AlphabetDeterminer.getEnglishAlphabet();
     private static final Map<Character, Double> ENGLISH_EXPECTED_PERCENTAGES = ExpectedPercentages.createExpectedPercentagesEnglish();
     private static final Map<Character, Double> UKRAINIAN_EXPECTED_PERCENTAGES = ExpectedPercentages.createExpectedPercentagesUkrainian();
