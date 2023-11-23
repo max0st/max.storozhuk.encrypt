@@ -11,14 +11,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class CustomFileWriter {
+public class CustomFileWriter {
     /**
      * Writes the specified content to the file at the given path.
      *
      * @param filePath The path of the file to write the content to.
      * @param content  The content to be written to the file.
      */
-    protected static void writeFile(String filePath, String content) {
+    public void writeFile(String filePath, String content) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(content);
         } catch (IOException e) {

@@ -11,14 +11,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-class CustomFileReader {
+public class CustomFileReader {
     /**
      * Reads the content of the file at the given path and returns it as a string.
      *
      * @param filePath The path of the file to read.
      * @return The content of the file as a string.
      */
-    protected static String readFile(String filePath) {
+    public String readFile(String filePath) {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;

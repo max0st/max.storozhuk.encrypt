@@ -30,7 +30,7 @@ public class CaesarCipher {
      * @param key  The key representing the shift in the alphabet.
      * @return The encrypted text.
      */
-    public static String encrypt(String text, int key) {
+    public String encrypt(String text, int key) {
         String alphabet = AlphabetDeterminer.determineAlphabet(text);
         StringBuilder result = new StringBuilder();
 
@@ -54,7 +54,7 @@ public class CaesarCipher {
      * @param key  The key representing the shift in the alphabet.
      * @return The decrypted text.
      */
-    public static String decrypt(String text, int key) {
+    public String decrypt(String text, int key) {
         return encrypt(text, -key);
     }
 
@@ -68,7 +68,7 @@ public class CaesarCipher {
      * @param key      The key representing the shift in the alphabet.
      * @return The encrypted character.
      */
-    private static char encryptChar(char ch, String alphabet, int key) {
+    private char encryptChar(char ch, String alphabet, int key) {
         char lowerCh = Character.toLowerCase(ch);
         int index = alphabet.indexOf(lowerCh);
         int encryptedIndex = (index + key) % alphabet.length();
