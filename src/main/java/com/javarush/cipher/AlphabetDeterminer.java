@@ -42,6 +42,9 @@ public class AlphabetDeterminer {
      */
     private static final String UKRAINIAN_ALPHABET = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя" + ADDITIONAL_CASES;
 
+    private AlphabetDeterminer() {
+    }
+
     /**
      * Determines the alphabet based on the language detected in the input text.
      * It uses regular expressions to identify English and Ukrainian characters in the text.
