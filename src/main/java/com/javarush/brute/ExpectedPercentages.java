@@ -26,10 +26,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExpectedPercentages {
+    private static final FrequencyAnalysis frequencyAnalysis = new FrequencyAnalysis();
 
     private static final String ENGLISH_ALPHABET = AlphabetDeterminer.getEnglishAlphabet();
-    private static final Map<Character, Double> ENGLISH_EXPECTED_PERCENTAGES = ExpectedPercentages.createExpectedPercentagesEnglish();
-    private static final Map<Character, Double> UKRAINIAN_EXPECTED_PERCENTAGES = ExpectedPercentages.createExpectedPercentagesUkrainian();
+    private final Map<Character, Double> ENGLISH_EXPECTED_PERCENTAGES = createExpectedPercentagesEnglish();
+    private final Map<Character, Double> UKRAINIAN_EXPECTED_PERCENTAGES = createExpectedPercentagesUkrainian();
 
     /**
      * Gets the expected percentage of a letter in the decrypted text based on the language detected.
@@ -38,7 +39,7 @@ public class ExpectedPercentages {
      * @param decryptedText The decrypted text used for language detection.
      * @return The expected percentage of the given letter.
      */
-    protected static double getExpectedPercentage(char letter, String decryptedText) {
+    protected double getExpectedPercentage(char letter, String decryptedText) {
         char lowerCaseLetter = Character.toLowerCase(letter);
         String alphabet = AlphabetDeterminer.determineAlphabet(decryptedText);
         if (alphabet.equals(ENGLISH_ALPHABET)) {
@@ -52,8 +53,8 @@ public class ExpectedPercentages {
      * @param textForAnalysis The input text for frequency analysis.
      * @return A map containing letter percentages for each letter in the text.
      */
-    protected static Map<Character, Double> calculateLetterPercentages(String textForAnalysis) {
-        int[] frequency = FrequencyAnalysis.calculateFrequency(textForAnalysis);
+    protected Map<Character, Double> calculateLetterPercentages(String textForAnalysis) {
+        int[] frequency = frequencyAnalysis.calculateFrequency(textForAnalysis);
         int totalCharacters = textForAnalysis.length();
 
         Map<Character, Double> percentages = new HashMap<>();
@@ -75,7 +76,7 @@ public class ExpectedPercentages {
      * Creates a map of expected letter percentages for the English alphabet.
      */
 
-    protected static Map<Character, Double> createExpectedPercentagesEnglish() {
+    protected Map<Character, Double> createExpectedPercentagesEnglish() {
         Map<Character, Double> expectedPercentages = new HashMap<>();
         expectedPercentages.put('a', 8.17);
         expectedPercentages.put('b', 1.49);
@@ -109,7 +110,7 @@ public class ExpectedPercentages {
     /**
      * Creates a map of expected letter percentages for the Ukrainian alphabet.
      */
-    protected static Map<Character, Double> createExpectedPercentagesUkrainian() {
+    protected Map<Character, Double> createExpectedPercentagesUkrainian() {
         Map<Character, Double> expectedPercentages = new HashMap<>();
         expectedPercentages.put('а', 7.2);
         expectedPercentages.put('б', 1.7);
