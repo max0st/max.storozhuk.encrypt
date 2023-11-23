@@ -1,6 +1,8 @@
 package com.javarush.gui;
 
+import com.javarush.cipher.CipherService;
 import com.javarush.fileoperations.FileService;
+import com.javarush.fileoperations.ValidationUtils;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -9,9 +11,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class GUIController {
+    CipherService cipherService = new CipherService();
 
 
-    protected void showErrorDialog(String message) {
+    private void showErrorDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
@@ -19,7 +22,7 @@ public class GUIController {
         alert.showAndWait();
     }
 
-    protected void showSuccessDialog(String operation) {
+    private void showSuccessDialog(String operation) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText(null);
@@ -27,7 +30,7 @@ public class GUIController {
         alert.showAndWait();
     }
 
-    protected void showSuccessDialog(String operation, int key) {
+    private void showSuccessDialog(String operation, int key) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText(null);
@@ -82,7 +85,7 @@ public class GUIController {
         primaryStage.show();
     }
 
-    protected GridPane createGrid() {
+    private GridPane createGrid() {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -90,39 +93,39 @@ public class GUIController {
         return grid;
     }
 
-    protected ComboBox<String> createCommandBox() {
+    private ComboBox<String> createCommandBox() {
         ComboBox<String> commandComboBox = new ComboBox<>();
         commandComboBox.getItems().addAll("ENCRYPT", "DECRYPT", "BRUTE_FORCE");
         return commandComboBox;
     }
 
-    protected Label createLabel(String labelName) {
+    private Label createLabel(String labelName) {
         Label label = new Label(labelName);
         label.setVisible(false);
         return label;
     }
 
-    protected TextField createTextField() {
+    private TextField createTextField() {
         TextField field = new TextField();
         field.setVisible(false);
         return field;
     }
 
-    protected FileChooser createFileChooserTXT() {
+    private FileChooser createFileChooserTXT() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
         return fileChooser;
     }
 
-    protected Button createBrowseButton(TextField filePathField, FileChooser fileChooser, Stage primaryStage) {
+    private Button createBrowseButton(TextField filePathField, FileChooser fileChooser, Stage primaryStage) {
         Button browseFilePathButton = new Button("Browse");
         browseFilePathButton.setOnAction(e -> filePathField.setText(fileChooser.showOpenDialog(primaryStage).getAbsolutePath()));
         browseFilePathButton.setVisible(false);
         return browseFilePathButton;
     }
 
-    protected Button createExecuteButton(ComboBox<String> commandComboBox, TextField filePathField, TextField keyField, TextField filePathForStaticAnalysisField) {
+    private Button createExecuteButton(ComboBox<String> commandComboBox, TextField filePathField, TextField keyField, TextField filePathForStaticAnalysisField) {
         Button executeButton = new Button("Execute");
         executeButton.setVisible(false);
         executeButton.setOnAction(e -> {
@@ -141,7 +144,7 @@ public class GUIController {
                 return;
             }
 
-            if (!(command.equalsIgnoreCase("BRUTE_FORCE")) && (key.isEmpty() || !FileService.isNumeric(key))) {
+            if (!(command.equalsIgnoreCase("BRUTE_FORCE")) && (key.isEmpty() || !ValidationUtils.isNumeric(key))) {
                 showErrorDialog("Please enter a key.");
                 return;
             }
@@ -158,19 +161,19 @@ public class GUIController {
 
             switch (command) {
                 case "ENCRYPT" -> {
-                    FileService.encryptFile(filePath, Integer.parseInt(key));
+                    cipherService.encryptFile(filePath, Integer.parseInt(key));
                     showSuccessDialog(command);
                 }
                 case "DECRYPT" -> {
-                    FileService.decryptFile(filePath, Integer.parseInt(key));
+                    cipherService.decryptFile(filePath, Integer.parseInt(key));
                     showSuccessDialog(command);
                 }
                 case "BRUTE_FORCE" -> {
                     int decryptedKey;
                     if (!filePathForStaticAnalysis.isEmpty()) {
-                        decryptedKey = FileService.decryptAnalysisBF(filePath, filePathForStaticAnalysis);
+                        decryptedKey = cipherService.decryptAnalysisBF(filePath, filePathForStaticAnalysis);
                     } else {
-                        decryptedKey = FileService.decryptBF(filePath);
+                        decryptedKey = cipherService.decryptBF(filePath);
                     }
                     showSuccessDialog(command, decryptedKey);
                 }
@@ -182,7 +185,7 @@ public class GUIController {
         return executeButton;
     }
 
-    protected void commandBoxActionSet(Label filePathLabel, Label keyLabel, Label filePathForStaticAnalysisLabel, Label infoLabel, Label infoForCommand, Label infoKey, Label infoForPath, TextField filePathField, TextField keyField, TextField filePathForStaticAnalysisField, Button browseFilePathButton, Button browseFilePathForStatAnalysisButton, ComboBox<String> commandComboBox, Button executeButton, GridPane grid) {
+    private void commandBoxActionSet(Label filePathLabel, Label keyLabel, Label filePathForStaticAnalysisLabel, Label infoLabel, Label infoForCommand, Label infoKey, Label infoForPath, TextField filePathField, TextField keyField, TextField filePathForStaticAnalysisField, Button browseFilePathButton, Button browseFilePathForStatAnalysisButton, ComboBox<String> commandComboBox, Button executeButton, GridPane grid) {
         commandComboBox.setOnAction(e -> {
             boolean isBruteForce = "BRUTE_FORCE".equals(commandComboBox.getValue());
             filePathLabel.setVisible(true);
@@ -213,7 +216,7 @@ public class GUIController {
         });
     }
 
-    protected void addGridElements(Label commandLabel, Label filePathLabel, Label infoLabel, Label infoForCommand, Label infoForPath, TextField filePathField, Button browseFilePathButton, ComboBox<String> commandComboBox, Button executeButton, GridPane grid) {
+    private void addGridElements(Label commandLabel, Label filePathLabel, Label infoLabel, Label infoForCommand, Label infoForPath, TextField filePathField, Button browseFilePathButton, ComboBox<String> commandComboBox, Button executeButton, GridPane grid) {
         grid.add(commandLabel, 0, 0);
         grid.add(commandComboBox, 1, 0);
         grid.add(infoForCommand, 1, 1);
