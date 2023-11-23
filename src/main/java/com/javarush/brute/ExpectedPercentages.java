@@ -35,8 +35,8 @@ public class ExpectedPercentages {
     /**
      * Gets the expected percentage of a letter in the decrypted text based on the language detected.
      *
-     * @param letter          The letter for which the expected percentage is to be calculated.
-     * @param decryptedText   The decrypted text used for language detection.
+     * @param letter        The letter for which the expected percentage is to be calculated.
+     * @param decryptedText The decrypted text used for language detection.
      * @return The expected percentage of the given letter.
      */
     protected static double getExpectedPercentage(char letter, String decryptedText) {
@@ -71,6 +71,7 @@ public class ExpectedPercentages {
 
         return percentages;
     }
+
     /**
      * Creates a map of expected letter percentages for the English alphabet.
      */
