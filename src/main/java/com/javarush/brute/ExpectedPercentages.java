@@ -26,9 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExpectedPercentages {
-    private static final FrequencyAnalysis frequencyAnalysis = new FrequencyAnalysis();
-
-    private static final String ENGLISH_ALPHABET = AlphabetDeterminer.getEnglishAlphabet();
+    private static final FrequencyAnalysis FREQUENCY_ANALYSIS = new FrequencyAnalysis();
+    private final String ENGLISH_ALPHABET = AlphabetDeterminer.getEnglishAlphabet();
     private final Map<Character, Double> ENGLISH_EXPECTED_PERCENTAGES = createExpectedPercentagesEnglish();
     private final Map<Character, Double> UKRAINIAN_EXPECTED_PERCENTAGES = createExpectedPercentagesUkrainian();
 
@@ -54,7 +53,7 @@ public class ExpectedPercentages {
      * @return A map containing letter percentages for each letter in the text.
      */
     protected Map<Character, Double> calculateLetterPercentages(String textForAnalysis) {
-        int[] frequency = frequencyAnalysis.calculateFrequency(textForAnalysis);
+        int[] frequency = FREQUENCY_ANALYSIS.calculateFrequency(textForAnalysis);
         int totalCharacters = textForAnalysis.length();
 
         Map<Character, Double> percentages = new HashMap<>();

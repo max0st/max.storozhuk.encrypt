@@ -25,7 +25,7 @@ import java.util.Map;
 
 class FrequencyAnalysis {
 
-    private static final ExpectedPercentages expectedPercentages = new ExpectedPercentages();
+    private final ExpectedPercentages expectedPercentages = new ExpectedPercentages();
 
     /**
      * Calculates the plausibility of decrypted text using frequency analysis and expected letter percentages
