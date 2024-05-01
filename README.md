@@ -37,7 +37,7 @@ For example, the letter "Y" (upper case) with the key = 2 will turn into "." (do
        - Open a terminal and navigate to the project's target directory.
        - Run the following command: java -jar "C:\folder\max.storozhuk.encrypt\target\max.storozhuk.encrypt-1.0-jar-with-dependencies.jar" OPERATION "folder name/textFile1.txt" 20
 - **Option 2 and 3:** Run "max.storozhuk.encrypt-1.0-jar-with-dependencies.jar" in your preferred IDE
-  - Choose Choose the operating mode:
+  - Choose the operating mode:
     - 1 for CLI (Command Line Interface)
     - 2 for GUI (Graphical User Interface)
     
